@@ -7,6 +7,7 @@ module.exports = {
   },
   plugins: ['@typescript-eslint/eslint-plugin', 'prettier'],
   extends: [
+    'react-app',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
   ],
@@ -24,8 +25,16 @@ module.exports = {
     'prettier/prettier': [
       'error',
       {
-        'endOfLine': 'auto',
+        endOfLine: 'auto',
       },
     ],
+  },
+  settings: {
+    'import/resolver': {
+      node: {
+        paths: ['src'],
+        extensions: ['.ts', '.tsx'],
+      },
+    },
   },
 };
