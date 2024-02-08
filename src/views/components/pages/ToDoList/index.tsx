@@ -1,3 +1,9 @@
+import { Input } from '../../ui-components/Input';
+
 export const ToDoList: React.FC = () => {
-  return <main></main>;
+  return (
+    <main>
+      <Input title={'Added task'} />
+    </main>
+  );
 };
