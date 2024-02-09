@@ -1,9 +1,5 @@
-import { ReactNode } from 'react';
 import styles from './index.module.scss';
-
-interface TransparentOverlayProps {
-  children: ReactNode;
-}
+import { TransparentOverlayProps } from './types';
 
 export const TransparentOverlay: React.FC<TransparentOverlayProps> = ({
   children,

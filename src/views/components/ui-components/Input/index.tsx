@@ -1,13 +1,10 @@
+import styles from './index.module.scss';
 import { useState } from 'react';
 import { Checkbox } from 'views/components/ui-components/Checkbox';
-import styles from './index.module.scss';
 import Trash from 'assets/images/icons/animated/trash.json';
 import Settings from 'assets/images/icons/animated/settings.json';
 import { AnimatedIcon } from '../AnimatedIcon';
-
-interface InputProps {
-  title: string;
-}
+import { InputProps } from './types';
 
 export const Input: React.FC<InputProps> = ({ title }) => {
   const [isChecked, setIsChecked] = useState(false);

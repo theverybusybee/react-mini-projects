@@ -1,9 +1,5 @@
 import styles from './index.module.scss';
-
-interface CheckboxProps {
-  isChecked: boolean;
-  setIsChecked: () => void;
-}
+import { CheckboxProps } from './types';
 
 export const Checkbox: React.FC<CheckboxProps> = ({
   setIsChecked,

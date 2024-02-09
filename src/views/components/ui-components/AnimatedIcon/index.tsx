@@ -1,11 +1,7 @@
 import styles from './index.module.scss';
 import { Player } from '@lordicon/react';
-import { JSONObject } from 'data/types';
 import { useEffect, useRef, useState } from 'react';
-
-interface AnimatedIconProps {
-  icon: JSONObject;
-}
+import { AnimatedIconProps } from './types';
 
 export const AnimatedIcon: React.FC<AnimatedIconProps> = ({ icon }) => {
   const playerRef = useRef<Player>(null);

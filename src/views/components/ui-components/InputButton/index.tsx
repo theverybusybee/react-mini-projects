@@ -1,8 +1,5 @@
 import styles from './index.module.scss';
-
-interface InputButtonProps {
-  text: string;
-}
+import { InputButtonProps } from './types';
 
 export const InputButton: React.FC<InputButtonProps> = ({ text }) => {
   return <button className={styles.button}>{text}</button>;
