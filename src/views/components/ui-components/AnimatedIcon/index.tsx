@@ -26,8 +26,8 @@ export const AnimatedIcon: React.FC<AnimatedIconProps> = ({ icon }) => {
   }, [trashIconState]);
 
   return (
-    <div
-      className={styles.container}
+    <button
+      className={styles.button}
       onMouseEnter={handleIconHover}
       onMouseLeave={handleIconHover}
     >
@@ -41,6 +41,6 @@ export const AnimatedIcon: React.FC<AnimatedIconProps> = ({ icon }) => {
         state={trashIconState}
         onReady={handleIconHover}
       />
-    </div>
+    </button>
   );
 };

@@ -16,12 +16,16 @@ export const Input: React.FC<InputProps> = ({ title }) => {
     setIsChecked((prevState) => !prevState);
   };
 
+  const taskStyles = `${styles.task} ${isChecked ? styles.task_fulfilled : ''}`;
+
   return (
-    <article className={styles.task}>
+    <article className={taskStyles}>
       <Checkbox setIsChecked={handleCheckbox} isChecked={isChecked} />
       <p className={styles.taskTitle}>{title}</p>
-      <AnimatedIcon icon={Trash} />
-      <AnimatedIcon icon={Settings} />
+      <div className={styles.buttonsContainer}>
+        <AnimatedIcon icon={Settings} />
+        <AnimatedIcon icon={Trash} />
+      </div>
     </article>
   );
 };
