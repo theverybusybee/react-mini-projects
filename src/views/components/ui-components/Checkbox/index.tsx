@@ -1,9 +1,8 @@
-import { SyntheticEvent } from 'react';
 import styles from './index.module.scss';
 
 interface CheckboxProps {
   isChecked: boolean;
-  setIsChecked: (e: SyntheticEvent) => void;
+  setIsChecked: () => void;
 }
 
 export const Checkbox: React.FC<CheckboxProps> = ({
