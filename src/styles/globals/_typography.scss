@@ -24,3 +24,7 @@ button {
   font-family: $font;
   border-width: 0;
 }
+
+input[type='checkbox'] {
+  margin: 0;
+}
