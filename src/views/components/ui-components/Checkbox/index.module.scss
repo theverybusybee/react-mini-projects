@@ -14,8 +14,14 @@
     opacity: 0;
     cursor: pointer;
 
+    &:hover ~ .customCheckbox {
+      border-color: $light-lilac;
+    }
+
     &:checked ~ .customCheckbox {
-      background-color: $lilac;
+      transition: background-color 0.3s;
+      background-color: $light-lilac;
+      border-color: $light-lilac;
     }
   }
 
@@ -29,5 +35,6 @@
     left: 0;
     pointer-events: none;
     transition: background-color 0.3s;
+    transition: border-color 0.3s;
   }
 }
