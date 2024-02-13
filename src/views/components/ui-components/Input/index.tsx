@@ -2,11 +2,10 @@ import styles from './index.module.scss';
 import { useState } from 'react';
 import { Checkbox } from 'views/components/ui-components/Checkbox';
 import Trash from 'assets/images/icons/animated/trash.json';
-import Settings from 'assets/images/icons/animated/settings.json';
 import { AnimatedIcon } from '../AnimatedIcon';
 import { InputProps } from './types';
 
-export const Input: React.FC<InputProps> = ({ title }) => {
+export const Input: React.FC<InputProps> = ({ title, handleDelete }) => {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckbox = () => {
@@ -20,8 +19,8 @@ export const Input: React.FC<InputProps> = ({ title }) => {
       <Checkbox setIsChecked={handleCheckbox} isChecked={isChecked} />
       <p className={styles.taskTitle}>{title}</p>
       <div className={styles.buttonsContainer}>
-        <AnimatedIcon icon={Settings} />
-        <AnimatedIcon icon={Trash} />
+        {/* <AnimatedIcon icon={Settings} /> */}
+        <AnimatedIcon icon={Trash} onClick={handleDelete} />
       </div>
     </article>
   );

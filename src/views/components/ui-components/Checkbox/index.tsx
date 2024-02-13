@@ -6,8 +6,13 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   isChecked,
 }) => {
   return (
-    <label className={styles.label} onClick={setIsChecked}>
-      <input type="checkbox" className={styles.checkbox} checked={isChecked} />
+    <label className={styles.label}>
+      <input
+        type="checkbox"
+        className={styles.checkbox}
+        checked={isChecked}
+        onChange={setIsChecked}
+      />
       <div className={styles.customCheckbox}></div>
     </label>
   );

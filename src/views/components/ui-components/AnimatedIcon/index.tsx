@@ -1,22 +1,25 @@
 import styles from './index.module.scss';
 import { Player } from '@lordicon/react';
 import { useEffect, useRef, useState } from 'react';
-import { AnimatedIconProps } from './types';
+import { AnimatedIconProps, TrashIconState } from './types';
 
-export const AnimatedIcon: React.FC<AnimatedIconProps> = ({ icon }) => {
+export const AnimatedIcon: React.FC<AnimatedIconProps> = ({
+  icon,
+  onClick,
+}) => {
   const playerRef = useRef<Player>(null);
-  const [trashIconState, setTrashIconState] = useState('in-trash-empty');
+  const [trashIconState, setTrashIconState] = useState(TrashIconState.In);
 
   const handleIconHover = () => {
-    setTrashIconState((prevState) => {
-      return prevState === 'in-trash-empty'
-        ? 'hover-trash-empty'
-        : 'in-trash-empty';
-    });
+    setTrashIconState((prevState) =>
+      prevState === TrashIconState.In
+        ? TrashIconState.Hover
+        : TrashIconState.In,
+    );
   };
 
   useEffect(() => {
-    if (trashIconState === 'hover-trash-empty') {
+    if (trashIconState === TrashIconState.Hover) {
       playerRef.current?.playFromBeginning();
     }
   }, [trashIconState]);
@@ -26,16 +29,17 @@ export const AnimatedIcon: React.FC<AnimatedIconProps> = ({ icon }) => {
       className={styles.button}
       onMouseEnter={handleIconHover}
       onMouseLeave={handleIconHover}
+      onClick={onClick}
+      type="button"
     >
       <Player
         ref={playerRef}
         size={24}
         icon={icon}
         colorize={
-          trashIconState === 'hover-trash-empty' ? '#AFA3C4' : '#BFB5CF'
+          trashIconState === TrashIconState.Hover ? '#AFA3C4' : '#BFB5CF'
         }
         state={trashIconState}
-        onReady={handleIconHover}
       />
     </button>
   );
