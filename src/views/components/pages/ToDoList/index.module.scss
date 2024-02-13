@@ -1,5 +1,27 @@
+@import '/src/styles/variables/index';
+
 .taskList {
+  padding-right: 12px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  overflow-y: scroll;
+  max-height: 45svh;
+  scrollbar-width: thin;
+  scrollbar-color: $lilac $snowWhite;
+
+  &::-webkit-scrollbar {
+    margin-block: 5px;
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $snowWhite;
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $lilac;
+    border-radius: 3px;
+  }
 }
