@@ -32,6 +32,23 @@ export const ToDoList: React.FC = () => {
     setTasksState(tasksState.filter((task) => task.id !== taskId));
   }
 
+  function fulfillTask(taskId: string) {
+    setTasksState(
+      tasksState.map((task) => {
+        if (task.id === taskId) {
+          return {
+            ...task,
+            status:
+              task.status === TasksStatus.Fulfilled
+                ? TasksStatus.Active
+                : TasksStatus.Fulfilled,
+          };
+        }
+        return task;
+      }),
+    );
+  }
+
   return (
     <main>
       <TransparentOverlay>
@@ -42,17 +59,36 @@ export const ToDoList: React.FC = () => {
         />
         {!!tasksState.length && (
           <ul className={styles.taskList}>
-            {tasksState.map(
-              (task) =>
-                task && (
-                  <li key={task.id}>
-                    <Input
-                      title={task.content}
-                      handleDelete={() => deleteTask(task.id)}
-                    />
-                  </li>
-                ),
-            )}
+            {tasksState
+              .filter((task) => task.status === TasksStatus.Active)
+              .map(
+                (task) =>
+                  task && (
+                    <li key={task.id}>
+                      <Input
+                        title={task.content}
+                        handleDelete={() => deleteTask(task.id)}
+                        handleCheckbox={() => fulfillTask(task.id)}
+                        checkboxState={task.status}
+                      />
+                    </li>
+                  ),
+              )}
+            {tasksState
+              .filter((task) => task.status === TasksStatus.Fulfilled)
+              .map(
+                (task) =>
+                  task && (
+                    <li key={task.id}>
+                      <Input
+                        title={task.content}
+                        handleDelete={() => deleteTask(task.id)}
+                        handleCheckbox={() => fulfillTask(task.id)}
+                        checkboxState={task.status}
+                      />
+                    </li>
+                  ),
+              )}
           </ul>
         )}
       </TransparentOverlay>
