@@ -1,7 +1,7 @@
 @import '/src/styles/variables/colors';
 
 .overlay {
-  margin: 90px;
+  margin: 50px auto;
   max-width: 800px;
   padding: 80px;
   background-color: transparentize($white, 0.5);

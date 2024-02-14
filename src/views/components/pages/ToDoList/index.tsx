@@ -51,6 +51,7 @@ export const ToDoList: React.FC = () => {
 
   return (
     <main>
+      <h1 className={styles.title}>Tasks board</h1>
       <TransparentOverlay>
         <TasksSubmitInput
           value={inputState}

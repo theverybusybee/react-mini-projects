@@ -1,5 +1,5 @@
-@use '../utils' as *;
 @use '../variables' as *;
+@use '../mixins/' as *;
 
 html {
   box-sizing: border-box;
@@ -16,7 +16,7 @@ body {
   height: 100svh;
   margin: 0;
   padding: 0;
-  font-family: $font;
+  @include createFont($regularTextStyles, $fontRegular);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: $bodyColor;
