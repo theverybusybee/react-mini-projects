@@ -16,6 +16,7 @@ export const TasksChangeInput: React.FC<TasksChangeInputProps> = ({
           value={value}
           onChange={onChange}
           type="text"
+          placeholder="Type new task name"
         />
       </label>
       <div className={styles.buttonContainer}>

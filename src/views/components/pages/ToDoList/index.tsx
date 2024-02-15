@@ -64,6 +64,22 @@ export const ToDoList: React.FC = () => {
     );
   }
 
+  function saveTask(taskId: string) {}
+
+  function skipTask(taskId: string) {
+    setTasksState(
+      tasksState.map((task) => {
+        if (task.id === taskId) {
+          return {
+            ...task,
+            status: TasksStatus.Active,
+          };
+        }
+        return task;
+      }),
+    );
+  }
+
   return (
     <main>
       <h1 className={styles.title}>Tasks board</h1>
@@ -100,7 +116,7 @@ export const ToDoList: React.FC = () => {
                       value={inputState}
                       onChange={handleInputChange}
                       onSave={() => {}}
-                      onSkip={() => {}}
+                      onSkip={() => skipTask(task.id)}
                     />
                   </li>
                 ),
