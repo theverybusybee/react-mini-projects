@@ -5,6 +5,7 @@ import { TasksSubmitInput } from 'views/components/ui-components/TasksSubmitInpu
 import { useState } from 'react';
 import { TasksStateInterface, TasksStatus } from './types';
 import { generateId } from 'data/helpers';
+import { TasksChangeInput } from 'views/components/ui-components/TasksChangeInput';
 
 export const ToDoList: React.FC = () => {
   const [inputState, setInputState] = useState('');
@@ -30,6 +31,20 @@ export const ToDoList: React.FC = () => {
 
   function deleteTask(taskId: string) {
     setTasksState(tasksState.filter((task) => task.id !== taskId));
+  }
+
+  function editTask(taskId: string) {
+    setTasksState(
+      tasksState.map((task) => {
+        if (taskId === task.id) {
+          return {
+            ...task,
+            status: TasksStatus.Editable,
+          };
+        }
+        return task;
+      }),
+    );
   }
 
   function fulfillTask(taskId: string) {
@@ -58,28 +73,37 @@ export const ToDoList: React.FC = () => {
           onChange={handleInputChange}
           onSubmit={createTask}
         />
-        {/* <TasksChangeInput
-          value={inputState}
-          onChange={handleInputChange}
-          onSave={() => {}}
-          onSkip={() => {}}
-        /> */}
+
         {!!tasksState.length && (
           <ul className={styles.taskList}>
             {tasksState
-              .filter((task) => task.status === TasksStatus.Active)
-              .map(
+              .filter(
                 (task) =>
-                  task && (
-                    <li key={task.id}>
-                      <Input
-                        title={task.content}
-                        handleDelete={() => deleteTask(task.id)}
-                        handleCheckbox={() => fulfillTask(task.id)}
-                        checkboxState={task.status}
-                      />
-                    </li>
-                  ),
+                  task.status === TasksStatus.Active ||
+                  task.status === TasksStatus.Editable,
+              )
+              .map((task) =>
+                task.status === TasksStatus.Active ? (
+                  <li key={task.id}>
+                    <Input
+                      title={task.content}
+                      handleEdit={() => editTask(task.id)}
+                      handleDelete={() => deleteTask(task.id)}
+                      handleCheckbox={() => fulfillTask(task.id)}
+                      checkboxState={task.status}
+                    />
+                  </li>
+                ) : (
+                  <li key={task.id}>
+                    {' '}
+                    <TasksChangeInput
+                      value={inputState}
+                      onChange={handleInputChange}
+                      onSave={() => {}}
+                      onSkip={() => {}}
+                    />
+                  </li>
+                ),
               )}
             {tasksState
               .filter((task) => task.status === TasksStatus.Fulfilled)
@@ -89,6 +113,7 @@ export const ToDoList: React.FC = () => {
                     <li key={task.id}>
                       <Input
                         title={task.content}
+                        handleEdit={() => editTask(task.id)}
                         handleDelete={() => deleteTask(task.id)}
                         handleCheckbox={() => fulfillTask(task.id)}
                         checkboxState={task.status}

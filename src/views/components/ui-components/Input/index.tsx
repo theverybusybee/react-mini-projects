@@ -1,12 +1,14 @@
 import styles from './index.module.scss';
 import { Checkbox } from 'views/components/ui-components/Checkbox';
 import Trash from 'assets/images/icons/animated/trash.json';
+import Settings from 'assets/images/icons/animated/settings.json';
 import { AnimatedIcon } from '../AnimatedIcon';
 import { InputProps } from './types';
 import { TasksStatus } from 'views/components/pages/ToDoList/types';
 
 export const Input: React.FC<InputProps> = ({
   title,
+  handleEdit,
   handleDelete,
   handleCheckbox,
   checkboxState,
@@ -21,7 +23,7 @@ export const Input: React.FC<InputProps> = ({
       />
       <p className={styles.taskTitle}>{title}</p>
       <div className={styles.buttonsContainer}>
-        {/* <AnimatedIcon icon={Settings} /> */}
+        <AnimatedIcon icon={Settings} onClick={handleEdit} />
         <AnimatedIcon icon={Trash} onClick={handleDelete} />
       </div>
     </article>

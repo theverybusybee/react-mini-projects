@@ -1,5 +1,6 @@
 export enum TasksStatus {
   Active,
+  Editable,
   Fulfilled,
 }
 

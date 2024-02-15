@@ -1,4 +1,5 @@
 @import '/src/styles/variables/index';
+@import '/src/styles/mixins/index';
 
 .task {
   display: grid;
@@ -9,7 +10,7 @@
   padding: 12px 20px;
   border-radius: 10px;
   color: $plum;
-  font: $regularTextStyles;
+  @include createFont($regularTextStyles, $fontRegular);
   transition: box-shadow 0.3s;
 
   &:hover {

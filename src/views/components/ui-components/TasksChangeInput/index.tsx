@@ -9,17 +9,19 @@ export const TasksChangeInput: React.FC<TasksChangeInputProps> = ({
   onSkip,
 }) => {
   return (
-    <label className={styles.label}>
-      <input
-        className={styles.input}
-        value={value}
-        onChange={onChange}
-        type="text"
-      />
+    <article className={styles.article}>
+      <label className={styles.label}>
+        <input
+          className={styles.input}
+          value={value}
+          onChange={onChange}
+          type="text"
+        />
+      </label>
       <div className={styles.buttonContainer}>
         <InputButton text="save" onClick={onSave} />
         <InputButton text="skip" onClick={onSkip} />
       </div>
-    </label>
+    </article>
   );
 };
