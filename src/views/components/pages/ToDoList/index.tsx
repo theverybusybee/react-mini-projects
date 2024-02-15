@@ -58,6 +58,12 @@ export const ToDoList: React.FC = () => {
           onChange={handleInputChange}
           onSubmit={createTask}
         />
+        {/* <TasksChangeInput
+          value={inputState}
+          onChange={handleInputChange}
+          onSave={() => {}}
+          onSkip={() => {}}
+        /> */}
         {!!tasksState.length && (
           <ul className={styles.taskList}>
             {tasksState

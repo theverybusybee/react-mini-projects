@@ -1,10 +1,5 @@
 import styles from './index.module.scss';
-
-interface TasksSubmitInputProps {
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-}
+import { TasksSubmitInputProps } from './types';
 
 export const TasksSubmitInput: React.FC<TasksSubmitInputProps> = ({
   value,
