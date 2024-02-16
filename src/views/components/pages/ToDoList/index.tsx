@@ -1,6 +1,6 @@
 import styles from './index.module.scss';
 import { TransparentOverlay } from 'views/components/sections/TransparentOverlay';
-import { Input } from '../../ui-components/Input';
+import { Task } from '../../ui-components/Task';
 import { TasksSubmitInput } from 'views/components/ui-components/TasksSubmitInput';
 import { useState } from 'react';
 import { TasksStateInterface, TasksStatus } from './types';
@@ -64,7 +64,7 @@ export const ToDoList: React.FC = () => {
     );
   }
 
-  function saveTask(taskId: string) {}
+  // function saveTask(taskId: string) {}
 
   function skipTask(taskId: string) {
     setTasksState(
@@ -101,7 +101,7 @@ export const ToDoList: React.FC = () => {
               .map((task) =>
                 task.status === TasksStatus.Active ? (
                   <li key={task.id}>
-                    <Input
+                    <Task
                       title={task.content}
                       handleEdit={() => editTask(task.id)}
                       handleDelete={() => deleteTask(task.id)}
@@ -127,7 +127,7 @@ export const ToDoList: React.FC = () => {
                 (task) =>
                   task && (
                     <li key={task.id}>
-                      <Input
+                      <Task
                         title={task.content}
                         handleEdit={() => editTask(task.id)}
                         handleDelete={() => deleteTask(task.id)}

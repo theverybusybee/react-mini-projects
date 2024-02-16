@@ -3,10 +3,10 @@ import { Checkbox } from 'views/components/ui-components/Checkbox';
 import Trash from 'assets/images/icons/animated/trash.json';
 import Settings from 'assets/images/icons/animated/settings.json';
 import { AnimatedIcon } from '../AnimatedIcon';
-import { InputProps } from './types';
+import { TaskProps } from './types';
 import { TasksStatus } from 'views/components/pages/ToDoList/types';
 
-export const Input: React.FC<InputProps> = ({
+export const Task: React.FC<TaskProps> = ({
   title,
   handleEdit,
   handleDelete,
