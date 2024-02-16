@@ -8,6 +8,7 @@ import { TasksStatus } from 'views/components/pages/ToDoList/types';
 
 export const Task: React.FC<TaskProps> = ({
   title,
+  status,
   handleEdit,
   handleDelete,
   handleCheckbox,
@@ -23,7 +24,9 @@ export const Task: React.FC<TaskProps> = ({
       />
       <p className={styles.taskTitle}>{title}</p>
       <div className={styles.buttonsContainer}>
-        <AnimatedIcon icon={Settings} onClick={handleEdit} />
+        {status !== TasksStatus.Fulfilled && (
+          <AnimatedIcon icon={Settings} onClick={handleEdit} />
+        )}
         <AnimatedIcon icon={Trash} onClick={handleDelete} />
       </div>
     </article>

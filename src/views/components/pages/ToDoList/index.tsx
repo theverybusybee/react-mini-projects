@@ -133,6 +133,7 @@ export const ToDoList: React.FC = () => {
                       handleDelete={() => deleteTask(task.id)}
                       handleCheckbox={() => fulfillTask(task.id)}
                       checkboxState={task.status}
+                      status={task.status}
                     />
                   </li>
                 ) : (
@@ -155,6 +156,7 @@ export const ToDoList: React.FC = () => {
                     <li key={task.id}>
                       <Task
                         title={task.content}
+                        status={task.status}
                         handleEdit={() => editTask(task.id)}
                         handleDelete={() => deleteTask(task.id)}
                         handleCheckbox={() => fulfillTask(task.id)}
