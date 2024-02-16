@@ -8,11 +8,16 @@ import { generateId } from 'data/helpers';
 import { TasksChangeInput } from 'views/components/ui-components/TasksChangeInput';
 
 export const ToDoList: React.FC = () => {
-  const [inputState, setInputState] = useState('');
+  const [inputState, setInputState] = useState<string>('');
   const [tasksState, setTasksState] = useState<TasksStateInterface[] | []>([]);
+  const [editableTaskState, setEditableTaskState] = useState<string>('');
 
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     setInputState(e.target.value);
+  }
+
+  function handleTaskInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setEditableTaskState(e.target.value);
   }
 
   function createTask(e: React.FormEvent<HTMLFormElement>) {
@@ -36,13 +41,17 @@ export const ToDoList: React.FC = () => {
   function editTask(taskId: string) {
     setTasksState(
       tasksState.map((task) => {
-        if (taskId === task.id) {
+        if (task.status === TasksStatus.Editable) {
+          setEditableTaskState('');
           return {
             ...task,
-            status: TasksStatus.Editable,
+            status: TasksStatus.Active,
           };
-        }
-        return task;
+        } else if (taskId !== task.id) return task;
+        return {
+          ...task,
+          status: TasksStatus.Editable,
+        };
       }),
     );
   }
@@ -64,7 +73,23 @@ export const ToDoList: React.FC = () => {
     );
   }
 
-  // function saveTask(taskId: string) {}
+  function saveTask(taskId: string) {
+    const newArr = tasksState.map((task) => {
+      if (task.id !== taskId) return task;
+      if (!editableTaskState)
+        return {
+          ...task,
+          status: TasksStatus.Active,
+        };
+      return {
+        ...task,
+        content: editableTaskState,
+        status: TasksStatus.Active,
+      };
+    });
+    setEditableTaskState('');
+    return setTasksState(newArr);
+  }
 
   function skipTask(taskId: string) {
     setTasksState(
@@ -78,6 +103,7 @@ export const ToDoList: React.FC = () => {
         return task;
       }),
     );
+    setEditableTaskState('');
   }
 
   return (
@@ -113,9 +139,9 @@ export const ToDoList: React.FC = () => {
                   <li key={task.id}>
                     {' '}
                     <TasksChangeInput
-                      value={inputState}
-                      onChange={handleInputChange}
-                      onSave={() => {}}
+                      value={editableTaskState}
+                      onChange={handleTaskInputChange}
+                      onSave={() => saveTask(task.id)}
                       onSkip={() => skipTask(task.id)}
                     />
                   </li>
