@@ -1,0 +1,23 @@
+@use '../variables' as *;
+@use '../mixins/' as *;
+
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  height: 100svh;
+  margin: 0;
+  padding: 0;
+  @include createFont($regularTextStyles, $fontRegular);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: $bodyColor;
+}

@@ -1,0 +1,22 @@
+$white: #fff;
+$snowWhite: #fffbfb;
+$plum: #592c63;
+$lilac: #afa3c4;
+$light-lilac: #bfb5cf;
+$cotton-dreams-gradient: linear-gradient(
+  68deg,
+  #bfddef 0%,
+  #d8ceea 31.55%,
+  #f7c7e8 49.34%,
+  #eddaf1 74.36%
+);
+$cotton-dreams-button-gradient: linear-gradient(
+  270deg,
+  #c2b5da 0%,
+  #d5a1d2 23.43%,
+  #e2a6cf 46.85%,
+  #fffbfb 89.07%,
+  #fffbfb 93.7%
+);
+$checkboxColor: $lilac;
+$bodyColor: $cotton-dreams-gradient;

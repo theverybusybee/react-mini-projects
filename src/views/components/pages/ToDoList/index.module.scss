@@ -1,0 +1,36 @@
+@import '/src/styles/variables/index';
+@import '/src/styles/mixins/index';
+
+.title {
+  padding-top: 40px;
+  text-align: center;
+  @include createFont($titleStyles, $fontSemiBold);
+  color: $white;
+}
+
+.taskList {
+  padding-right: 12px;
+  padding-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: scroll;
+  max-height: 45svh;
+  scrollbar-width: thin;
+  scrollbar-color: $lilac $snowWhite;
+
+  &::-webkit-scrollbar {
+    margin-block: 5px;
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $snowWhite;
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $lilac;
+    border-radius: 3px;
+  }
+}
